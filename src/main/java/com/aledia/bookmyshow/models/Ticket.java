@@ -1,5 +1,6 @@
 package com.aledia.bookmyshow.models;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,12 +9,18 @@ import java.util.List;
 
 @Setter
 @Getter
+@Entity
 public class Ticket extends BaseModel {
     private int amount;
     private Date timeOfBooking;
-    private List<Seat> seats;
-    private User user;
-    private Show show;
-    private Payment payment;
+    @ManyToMany
+    private List<Chair> chairs;
+    @ManyToOne
+    private User bookedBy;
+    @ManyToOne
+    private Event event;
+    @OneToMany(mappedBy = "ticket")
+    private List<Payment> payments;
+    @Enumerated(EnumType.ORDINAL)
     private TicketStatus status;
 }

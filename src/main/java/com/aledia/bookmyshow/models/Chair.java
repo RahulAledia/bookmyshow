@@ -5,15 +5,13 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Entity
-public class ShowSeatType extends BaseModel{
-
-    @ManyToOne
-    private Event event;
+public class Chair extends BaseModel{
+    private String seatNumber;
+    private int rowz;
+    private int colz;
     @ManyToOne
     private SeatType seatType;
-    private int price;
-
 }
